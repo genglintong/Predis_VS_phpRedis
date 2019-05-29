@@ -2,7 +2,7 @@
 
 namespace redis;
 
-class phpRedisConn
+class phpRedisConn implements conn
 {
     protected $redisConn = null;
 
@@ -22,5 +22,17 @@ class phpRedisConn
     public function set($key, $string)
     {
         $this->redisConn->set($key, $string);
+    }
+
+    public function incrby($key, $num)
+    {
+        // TODO: Implement incr() method.
+        $this->redisConn->incrByFloat($key, $num);
+    }
+
+    public function getMode()
+    {
+        // TODO: Implement getMode() method.
+        return __CLASS__;
     }
 }

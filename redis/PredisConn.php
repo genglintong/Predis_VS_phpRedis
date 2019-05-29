@@ -4,7 +4,7 @@ namespace redis;
 
 use Predis;
 
-class PredisConn
+class PredisConn implements conn
 {
     protected $redisConn = null;
 
@@ -19,5 +19,16 @@ class PredisConn
     public function set($key, $string)
     {
         $this->redisConn->set($key, $string);
+    }
+
+    public function incrby($key, $num)
+    {
+        $this->redisConn->incrbyfloat($key, $num);
+    }
+
+    public function getMode()
+    {
+        // TODO: Implement getMode() method.
+        return __CLASS__;
     }
 }
