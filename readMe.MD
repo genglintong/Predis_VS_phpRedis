@@ -10,7 +10,6 @@
 ```
 #### redis并发测试
 `ab -n 1000 -c 100 http://test.glt.com/httpTest.php`
-
 ```
 # 一次请求 写两千次
 127.0.0.1:6379> get useTime_redis\PredisConn
@@ -28,3 +27,15 @@
 127.0.0.1:6379> get useTime_redis\PredisConn
 "203008"
 ```
+
+`ab -n 5000 -c 50 http://test.glt.com/httpTest.php`
+
+```
+# 一次请求 写两百次
+# 大多时间消耗 在redis 等待
+127.0.0.1:6379> get useTime_redis\PredisConn
+"234967"
+127.0.0.1:6379> get useTime_redis\phpRedisConn
+"177043"
+```
+
