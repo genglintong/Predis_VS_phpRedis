@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$num = 500000;
+$num = 100000;
 
 $startTime = \redis\Comm::getMillisecond();
 

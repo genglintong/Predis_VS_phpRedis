@@ -6,18 +6,25 @@ require __DIR__ . '/../vendor/autoload.php';
 
 class httpTest
 {
-    const NUM   = 200;
+    const NUM   = 1;
 
     public function __construct()
     {
-        $this->pRedisConn = new PredisConn();
-        $this->phpRedisConn = new phpRedisConn();
     }
 
     public function test()
     {
-        $this->testRedis($this->pRedisConn);
-        $this->testRedis($this->phpRedisConn);
+        $t = rand(0,2);
+
+        if ($t == 0) {
+            $this->testRedis(new phpRedisConn());
+        }elseif ($t == 1)
+        {
+            $this->testRedis(new PredisConn());
+        }elseif ($t == 2)
+        {
+            $this->testRedis(new phpRedisPconn());
+        }
     }
 
     private function testRedis(conn $conn)

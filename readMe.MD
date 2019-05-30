@@ -1,6 +1,8 @@
 ## Predis VS phpRedis
 > 项目中使用redis,对于PHP的redis连接实现,有两个包使用的较为广泛。一个是phpRedis,它是基于php的扩展,c实现。<br>另一个是pRedis,纯PHP实现。理论来讲phpRedis应该比Predis性能更好。
 
+### [博客地址](https://www.jianshu.com/p/58fe59e02f3d)
+
 #### 单连接测试
 `php stringTest`
 
@@ -39,3 +41,36 @@
 "177043"
 ```
 
+
+`ab -n 5000 -c 100 http://test.glt.com/httpTest.php`
+
+```
+# 一次请求 写二十次
+# 大多时间消耗 在redis 等待
+127.0.0.1:6379> get useTime_redis\PredisConn
+"25002"
+127.0.0.1:6379> get useTime_redis\phpRedisConn
+"14007"
+```
+
+`ab -n 5000 -c 100 http://test.glt.com/httpTest.php`
+
+```
+# 一次请求 写一次
+127.0.0.1:6379> get useTime_redis\PredisConn
+"5000"
+127.0.0.1:6379> get useTime_redis\phpRedisConn
+"1003"
+
+# 一次请求 写两次
+127.0.0.1:6379> get useTime_redis\PredisConn
+"4998"
+127.0.0.1:6379> get useTime_redis\phpRedisConn
+"1000"
+
+# 一次请求 写五次
+127.0.0.1:6379> get useTime_redis\phpRedisConn
+"4000"
+127.0.0.1:6379> get useTime_redis\PredisConn
+"8999"
+```

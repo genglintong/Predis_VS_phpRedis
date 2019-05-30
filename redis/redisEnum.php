@@ -10,5 +10,8 @@ class redisEnum
     // redis port
     const REDIS_PORT    = '6379';
 
+    // timeout 120
+    const REDIS_TIME_OUT    = '0';
+
     const DEFAULT_CHANNEL   = '1001';
 }

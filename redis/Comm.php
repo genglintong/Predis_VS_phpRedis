@@ -18,7 +18,7 @@ class Comm
     public static function getMillisecond()
     {
         list($s1, $s2) = explode(' ', microtime());
-        $curTime  = (float)sprintf('%.0f', (floatval($s1) + floatval($s2) * 1000));
+        $curTime  = (float)sprintf('%.5f', (floatval($s1) + floatval($s2) * 1000));
 
         return $curTime;
     }
