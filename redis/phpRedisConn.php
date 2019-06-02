@@ -4,7 +4,7 @@ namespace redis;
 
 class phpRedisConn implements conn
 {
-    protected $redisConn = null;
+    public $redisConn = null;
 
     public function __construct($ip = redisEnum::REDIS_HOST , $port = redisEnum::REDIS_PORT)
     {

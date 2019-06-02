@@ -29,13 +29,13 @@ class Comm
         self::logInfo($string);
     }
 
-    public static function logInfo($log)
+    public static function logInfo($log, $arr = [])
     {
         $logger = new Logger('redis');
 
         $logger->pushHandler(new StreamHandler(__DIR__.'/../stronge/logs/redis.log', Logger::INFO));
         $logger->pushHandler(new FirePHPHandler());
 
-        $logger->addInfo($log);
+        $logger->addInfo($log, $arr);
     }
 }
